@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.models import User
@@ -59,19 +60,19 @@ def registration(request):
 
 def get_dealerships(request, state="All"):
     if state == "All":
-        endpoint = "http://localhost:3030/fetchDealers"
+        endpoint = "os.environ.get(\"NODE_SERVICE_URL\", \"http://localhost:3030\")/fetchDealers"
     else:
-        endpoint = f"http://localhost:3030/fetchDealers/{state}"
+        endpoint = f"os.environ.get(\"NODE_SERVICE_URL\", \"http://localhost:3030\")/fetchDealers/{state}"
     dealerships = requests.get(endpoint).json()
     return JsonResponse({"status": 200, "dealers": dealerships})
 
 def get_dealer_reviews(request, dealer_id):
-    endpoint = f"http://localhost:3030/fetchReviews/dealer/{dealer_id}"
+    endpoint = f"os.environ.get(\"NODE_SERVICE_URL\", \"http://localhost:3030\")/fetchReviews/dealer/{dealer_id}"
     reviews = requests.get(endpoint).json()
     return JsonResponse({"status": 200, "reviews": reviews})
 
 def get_dealer_details(request, dealer_id):
-    endpoint = f"http://localhost:3030/fetchDealer/{dealer_id}"
+    endpoint = f"os.environ.get(\"NODE_SERVICE_URL\", \"http://localhost:3030\")/fetchDealer/{dealer_id}"
     dealer = requests.get(endpoint).json()
     return JsonResponse({"status": 200, "dealer": [dealer]})
 
@@ -81,7 +82,7 @@ def add_review(request):
         data = json.loads(request.body)
         try:
             response = requests.post(
-                "http://localhost:3030/insert_review",
+                "os.environ.get(\"NODE_SERVICE_URL\", \"http://localhost:3030\")/insert_review",
                 json=data
             )
             return JsonResponse({"status": 200})
@@ -101,4 +102,5 @@ def get_cars(request):
             "CarYear": car_model.year
         })
     return JsonResponse({"CarModels": cars})
+
 
