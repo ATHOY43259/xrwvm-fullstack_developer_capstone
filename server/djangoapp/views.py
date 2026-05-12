@@ -15,9 +15,14 @@ logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def login_user(request):
-    data = json.loads(request.body)
-    username = data['userName']
-    password = data['password']
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+    try:
+        data = json.loads(request.body)
+    except Exception:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+    username = data.get("userName", "")
+    password = data.get("password", "")
     user = authenticate(username=username, password=password)
     response_data = {"userName": username}
     if user is not None:
@@ -102,5 +107,6 @@ def get_cars(request):
             "CarYear": car_model.year
         })
     return JsonResponse({"CarModels": cars})
+
 
 
