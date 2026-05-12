@@ -1,5 +1,7 @@
 requests
-Django
+Django==4.2.0
 Pillow
 gunicorn
 python-dotenv
+whitenoise
+djangorestframework
