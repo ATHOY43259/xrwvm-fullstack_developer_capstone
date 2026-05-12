@@ -17,18 +17,18 @@ NODE_URL = os.environ.get("NODE_SERVICE_URL", "http://localhost:3030")
 
 @csrf_exempt
 def login_user(request):
-    if request.method != "POST":
-        return JsonResponse({"error": "POST required"}, status=405)
     try:
-        data = json.loads(request.body)
-        username = data.get("userName", "")
-        password = data.get("password", "")
+        body = request.body.decode("utf-8")
+        data = json.loads(body) if body else {}
+        username = data.get("userName", request.POST.get("userName", ""))
+        password = data.get("password", request.POST.get("password", ""))
+        if not username or not password:
+            return JsonResponse({"error": "Missing credentials"}, status=400)
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             return JsonResponse({"userName": username, "status": "Authenticated"})
-        else:
-            return JsonResponse({"userName": username, "status": "Failed"})
+        return JsonResponse({"userName": username, "status": "Failed"})
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
 
@@ -101,3 +101,4 @@ def get_cars(request):
     car_models = CarModel.objects.select_related("car_make")
     cars = [{"CarModel": c.name, "CarMake": c.car_make.name, "CarYear": c.year} for c in car_models]
     return JsonResponse({"CarModels": cars})
+
