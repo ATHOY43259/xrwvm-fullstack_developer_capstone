@@ -5,7 +5,7 @@ nixPkgs = ['python312', 'gcc']
 cmds = ['pip install -r requirements.txt']
 
 [phases.build]
-cmds = ['python manage.py collectstatic --noinput']
+cmds = ['python manage.py migrate --noinput', 'python manage.py collectstatic --noinput']
 
 [start]
 cmd = 'gunicorn djangoproj.wsgi --log-file -'
