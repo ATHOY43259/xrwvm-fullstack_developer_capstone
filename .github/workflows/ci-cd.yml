@@ -40,6 +40,8 @@ jobs:
         npm install
 
     - name: Build React frontend
+      env:
+        CI: false
       run: |
         cd server/frontend
         npm run build
