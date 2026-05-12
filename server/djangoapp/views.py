@@ -18,19 +18,19 @@ NODE_URL = os.environ.get("NODE_SERVICE_URL", "http://localhost:3030")
 @csrf_exempt
 def login_user(request):
     try:
-        body = request.body.decode("utf-8")
-        data = json.loads(body) if body else {}
-        username = data.get("userName", request.POST.get("userName", ""))
-        password = data.get("password", request.POST.get("password", ""))
-        if not username or not password:
-            return JsonResponse({"error": "Missing credentials"}, status=400)
+        body = request.body
+        if not body:
+            return JsonResponse({"error": "Empty body", "method": request.method, "ct": request.content_type}, status=400)
+        data = json.loads(body)
+        username = data.get("userName", "")
+        password = data.get("password", "")
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             return JsonResponse({"userName": username, "status": "Authenticated"})
         return JsonResponse({"userName": username, "status": "Failed"})
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=400)
+        return JsonResponse({"error": str(e), "body_len": len(request.body)}, status=400)
 
 @csrf_exempt
 def logout_request(request):
@@ -101,4 +101,5 @@ def get_cars(request):
     car_models = CarModel.objects.select_related("car_make")
     cars = [{"CarModel": c.name, "CarMake": c.car_make.name, "CarYear": c.year} for c in car_models]
     return JsonResponse({"CarModels": cars})
+
 
