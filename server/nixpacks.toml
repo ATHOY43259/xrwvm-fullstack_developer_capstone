@@ -1,11 +1,11 @@
 [phases.setup]
-nixPkgs = ['python312', 'gcc', 'nodejs_18', 'npm-9_x']
+nixPkgs = ['python312']
 
 [phases.install]
-cmds = ['pip install -r requirements.txt', 'cd frontend && npm install']
+cmds = ['pip install -r requirements.txt']
 
 [phases.build]
-cmds = ['cd frontend && npm run build', 'python manage.py migrate --noinput', 'python manage.py collectstatic --noinput']
+cmds = ['python manage.py migrate --noinput', 'python manage.py collectstatic --noinput']
 
 [start]
 cmd = 'gunicorn djangoproj.wsgi --log-file -'
