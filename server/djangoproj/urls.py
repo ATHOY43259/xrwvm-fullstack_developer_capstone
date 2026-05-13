@@ -9,4 +9,4 @@ urlpatterns = [
     path('djangoapp/', include('djangoapp.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name="index.html"))]
+urlpatterns += [re_path(r'^(?!djangoapp|admin|static).*', TemplateView.as_view(template_name="index.html"))]
