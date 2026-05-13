@@ -7,44 +7,48 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  lint-python:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install pylint
         pip install -r server/requirements.txt
-
+    - name: Lint Python Files
+      run: |
+        pylint server/djangoapp/*.py --disable=all --enable=E || true
     - name: Run Django checks
       run: |
         cd server
         python manage.py check
 
+  lint-javascript:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-
     - name: Install Node dependencies
       run: |
         cd server/frontend
         npm install
-
+    - name: Lint JavaScript Files
+      run: |
+        cd server/frontend
+        npx eslint src --ext .js,.jsx --max-warnings=100 || true
     - name: Build React frontend
       env:
         CI: false
       run: |
         cd server/frontend
         npm run build
-
-    - name: Success
-      run: echo "CI/CD Pipeline completed successfully!"
