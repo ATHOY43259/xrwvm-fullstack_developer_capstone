@@ -1,30 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - Best Cars Dealership</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #f8f9fa; }
-    .navbar { background-color: #1a1a2e; }
-    .navbar-brand, .nav-link { color: #ffffff !important; }
-    .nav-link.active { color: #f0a500 !important; font-weight: bold; }
-    .contact-header { background-color: #1a1a2e; color: white; padding: 60px 0; text-align: center; }
-    .contact-card { background: white; border-radius: 10px; padding: 30px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .contact-icon { font-size: 2rem; color: #f0a500; margin-bottom: 10px; }
-    footer { background-color: #1a1a2e; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-  </style>
+  <link rel="stylesheet" href="/static/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/static/style.css"/>
 </head>
 <body>
-
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="#">🚗 Best Cars Dealership</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#008b8b;">
+  <a class="navbar-brand" href="/">Best Cars Dealership</a>
+  <div class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
@@ -33,93 +19,36 @@
   </div>
 </nav>
 
-<!-- Header -->
-<div class="contact-header">
-  <h1>Contact Us</h1>
-  <p>We'd love to hear from you. Reach out to us anytime!</p>
-</div>
-
-<!-- Contact Info Cards -->
-<div class="container my-5">
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Contact Us</h1>
   <div class="row">
-
-    <div class="col-md-4">
-      <div class="contact-card text-center">
-        <div class="contact-icon">📍</div>
-        <h4>Our Address</h4>
-        <p>1234 Auto Drive,<br/>Kansas City, KS 66101,<br/>United States</p>
-      </div>
+    <div class="col-md-6">
+      <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600" alt="cars" class="img-fluid rounded" style="max-height:300px;object-fit:cover;"/>
     </div>
-
-    <div class="col-md-4">
-      <div class="contact-card text-center">
-        <div class="contact-icon">📞</div>
-        <h4>Phone Numbers</h4>
-        <p>Sales: +1 (800) 555-1234</p>
-        <p>Support: +1 (800) 555-5678</p>
-        <p>Fax: +1 (800) 555-9999</p>
-      </div>
+    <div class="col-md-6">
+      <img src="https://images.unsplash.com/photo-1577086664693-894d8405334a?w=600" alt="contactus" class="img-fluid rounded" style="max-height:300px;object-fit:cover;"/>
     </div>
-
-    <div class="col-md-4">
-      <div class="contact-card text-center">
-        <div class="contact-icon">✉️</div>
-        <h4>Email Us</h4>
-        <p>Sales: sales@bestcars.com</p>
-        <p>Support: support@bestcars.com</p>
-        <p>General: info@bestcars.com</p>
-      </div>
-    </div>
-
   </div>
-
-  <!-- Map / Image -->
   <div class="row mt-4">
-    <div class="col-12 text-center">
-      <div class="contact-card">
-        <h4>Find Us Here</h4>
-        <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/CSS3_and_HTML5_logos_and_wordmarks.svg/240px-CSS3_and_HTML5_logos_and_wordmarks.svg.png"
-          alt="Dealership Location"
-          style="width:100%; max-width:700px; border-radius:10px; margin-top:15px;"
-        />
-        <p class="mt-3">Visit our showroom Monday–Saturday, 9 AM to 7 PM</p>
-      </div>
+    <div class="col-md-4 text-center">
+      <h4>?? Address</h4>
+      <p>1234 Auto Drive, Kansas City, KS 66101</p>
+    </div>
+    <div class="col-md-4 text-center">
+      <h4>?? Phone</h4>
+      <p>+1 (800) 555-1234</p>
+      <p>+1 (800) 555-5678</p>
+    </div>
+    <div class="col-md-4 text-center">
+      <h4>?? Email</h4>
+      <p>sales@bestcars.com</p>
+      <p>support@bestcars.com</p>
     </div>
   </div>
-
-  <!-- Business Hours -->
-  <div class="row mt-2">
-    <div class="col-md-6">
-      <div class="contact-card">
-        <h4>🕐 Business Hours</h4>
-        <table class="table table-borderless">
-          <tbody>
-            <tr><td>Monday – Friday</td><td>9:00 AM – 7:00 PM</td></tr>
-            <tr><td>Saturday</td><td>10:00 AM – 5:00 PM</td></tr>
-            <tr><td>Sunday</td><td>Closed</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="contact-card">
-        <h4>🌐 Social Media</h4>
-        <p>Facebook: facebook.com/bestcarsdealership</p>
-        <p>Twitter: @BestCarsDeal</p>
-        <p>Instagram: @bestcars_official</p>
-        <p>LinkedIn: linkedin.com/company/bestcars</p>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<footer>
+<footer class="text-center mt-5 p-3" style="background-color:#008b8b; color:white;">
   <p>&copy; 2024 Best Cars Dealership. All Rights Reserved.</p>
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
